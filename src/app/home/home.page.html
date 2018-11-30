@@ -1,16 +1,78 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
+  <ion-toolbar color="primary">
+    <!-- <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+    </ion-buttons> -->
     <ion-title>
-      Home
+      DSD
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="scan()" fill="outline">
+        <ion-icon slot="end" name="qr-scanner"></ion-icon>
+        Scan
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the
-    <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Choose a Dispenser</ion-label>
+          <ion-select [(ngModel)]="dispenserId" (ionChange)="valueChange()">
+            <ion-select-option *ngFor="let d of dispensers" [value]="d.id">{{ d.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="items">
+      <ion-col sizeXs="12" sizeSm="6" sizeMd="6" sizeLg="6" sizeXl="6">
+        <ion-card (click)="dispense(items[0])">
+          <ion-card-header *ngIf="items[0]">
+            <ion-card-title style="font-weight: bold;">{{ items[0].name }}</ion-card-title>
+            <p>{{ items[0].description }}</p>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row style="align-items:center">
+                <div style="overflow: hidden; width: 200px; height: 150px;
+                background-image: url(assets/img/IMG_1.jpg); background-size: cover; 
+                background-repeat: no-repeat; background-position: center center;">
+                  <img src="assets/img/IMG_1.jpg" style="visibility: hidden;"></div>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div #Chart1></div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeXs="12" sizeSm="6" sizeMd="6" sizeLg="6" sizeXl="6">
+        <ion-card (click)="dispense(items[1])">
+          <ion-card-header *ngIf="items[1]">
+            <ion-card-title style="font-weight: bold;">{{ items[1].name }}</ion-card-title>
+            <p>{{ items[1].description }}</p>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row style="align-items:center">
+                <div style="overflow: hidden; width: 200px; height: 150px;
+                background-image: url(assets/img/IMG_2.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center;">
+                  <img src="assets/img/IMG_2.jpg" style="visibility: hidden;"></div>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div #Chart2></div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

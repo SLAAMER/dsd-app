@@ -1,5 +1,7 @@
 {
   "name": "dispense",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
